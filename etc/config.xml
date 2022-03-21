@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ * Copyright © 2020 Zeppto SAS. All rights reserved.
+ * License: OSL 3.0 https://opensource.org/licenses/OSL-3.0
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <zeppto_magento2>
+                <debug>1</debug>
+                <active>1</active> 
+                <model>ZepptoMagento2Facade</model> 
+                <merchant_gateway_key backend_model="Magento\Config\Model\Config\Backend\Encrypted" />
+                <order_status>pending_payment</order_status>
+                <payment_action>authorize</payment_action>
+                <title>eWallet</title>
+                <is_gateway>1</is_gateway>
+                <is_offline>0</is_offline>
+                <can_authorize>1</can_authorize>
+                <can_capture>1</can_capture>
+                <can_void>1</can_void>
+                <can_refund>1</can_refund>
+                <can_use_checkout>1</can_use_checkout>
+                <can_refund_partial_per_invoice>1</can_refund_partial_per_invoice>
+                 <can_cancel>1</can_cancel>
+                <sort_order>1</sort_order>
+                <debugReplaceKeys>MERCHANT_KEY</debugReplaceKeys>
+                <paymentInfoKeys>FRAUD_MSG_LIST</paymentInfoKeys>
+                <privateInfoKeys>FRAUD_MSG_LIST</privateInfoKeys>
+            </zeppto_magento2>
+        </payment>
+    </default>
+</config>
+

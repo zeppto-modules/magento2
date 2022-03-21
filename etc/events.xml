@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ * Copyright © 2020 Zeppto SAS. All rights reserved.
+ * License: OSL 3.0 https://opensource.org/licenses/OSL-3.0
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="payment_method_assign_data">
+        <observer name="zeppto_magento2_data_assign" instance="Zeppto\Magento2\Observer\DataAssignObserver" />
+    </event>
+</config>
