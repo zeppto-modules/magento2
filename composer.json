@@ -9,7 +9,7 @@
     "license": [
         "OSL-3.0"
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "autoload": {
         "files": [ "registration.php" ],
         "psr-4": {
