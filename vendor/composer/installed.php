@@ -1,24 +1,24 @@
 <?php return array (
   'root' => 
   array (
-    'pretty_version' => 'dev-master',
-    'version' => 'dev-master',
+    'pretty_version' => '1.0.0',
+    'version' => '1.0.0.0',
     'aliases' => 
     array (
     ),
-    'reference' => '81976ad5d836c04345f04566e123aae0ad415643',
+    'reference' => NULL,
     'name' => 'zeppto/magento2',
   ),
   'versions' => 
   array (
     'zeppto/magento2' => 
     array (
-      'pretty_version' => 'dev-master',
-      'version' => 'dev-master',
+      'pretty_version' => '1.0.0',
+      'version' => '1.0.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '81976ad5d836c04345f04566e123aae0ad415643',
+      'reference' => NULL,
     ),
   ),
 );
