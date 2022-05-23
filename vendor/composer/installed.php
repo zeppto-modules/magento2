@@ -1,8 +1,8 @@
 <?php return array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0',
-    'version' => '1.0.0.0',
+    'pretty_version' => '2.0.0',
+    'version' => '2.0.0.0',
     'aliases' => 
     array (
     ),
@@ -13,8 +13,8 @@
   array (
     'zeppto/magento2' => 
     array (
-      'pretty_version' => '1.0.0',
-      'version' => '1.0.0.0',
+      'pretty_version' => '2.0.0',
+      'version' => '2.0.0.0',
       'aliases' => 
       array (
       ),
