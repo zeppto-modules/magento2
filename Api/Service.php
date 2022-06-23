@@ -211,7 +211,9 @@ class Service implements ServiceInterface
                 $quote
                 ->setCheckoutMethod(\Magento\Checkout\Model\Type\Onepage::METHOD_CUSTOMER);
             }else{
-                $quote->setCustomerEmail($email);
+                if($email){
+                    $quote->setCustomerEmail($email);
+                }
                 if($isGuest){
                     $quote->setCheckoutMethod(\Magento\Checkout\Model\Type\Onepage::METHOD_GUEST)
                     ->setCustomerId(null)
@@ -229,7 +231,7 @@ class Service implements ServiceInterface
             }
 
             $quote->reserveOrderId()->save();
-            if($email) {
+            if($shippingAddress) {
               $this->setQuoteAddresses($shippingAddress, $email, $quote, $customer);
             }
             if($shippingOptionId) {
