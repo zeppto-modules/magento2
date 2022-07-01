@@ -217,7 +217,6 @@ class Service implements ServiceInterface
                 if($isGuest){
                     $quote->setCheckoutMethod(\Magento\Checkout\Model\Type\Onepage::METHOD_GUEST)
                     ->setCustomerId(null)
-                    ->setCustomerEmail($quote->getBillingAddress()->getEmail())
                     ->setCustomerIsGuest(true)
                     ->setCustomerGroupId(\Magento\Customer\Api\Data\GroupInterface::NOT_LOGGED_IN_ID);
                 }else{
