@@ -9,7 +9,7 @@ Generate package:
 composer install --ignore-platform-reqs
 zip -r zeppto_magento2-2.0.0.zip * -x 'README.md'
 
- zip -r zeppto_magento2-2.0.0.zip * -x 'README.md' -x 'vendor/*' -x 'composer.phar'
+ zip -r zeppto_magento2-2.0.2.zip * -x 'README.md' -x 'vendor/*' -x 'composer.phar' -x 'zeppto_magento2*' -x Basic_payment_method.md
 
 composer require zeppto/magento2
 composer require zeppto/magento2:dev/master
