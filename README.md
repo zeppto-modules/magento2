@@ -38,4 +38,4 @@ chmod -R 777 var/ generated/ pub/
 php bin/magento setup:upgrade && php bin/magento setup:di:compile && php bin/magento setup:static-content:Deploy -f && chmod -R 777 var/ generated/ pub/
 
 Test with Code Sniffer:
-php phpcs.phar Documents/paywax/magento-plugin/magento2/app/code/Paywax/Wallet/Api/Service.php 
+php phpcs.phar Documents/paywax/magento-plugin/magento2/app/code/Paywax/Wallet/Api/Service.php  
