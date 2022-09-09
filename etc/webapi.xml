@@ -14,6 +14,30 @@
             <resource ref="anonymous"/>
         </resources>
     </route>
+    <route method="POST" url="/V1/zeppto/prepare">
+        <service class="Zeppto\Magento2\Api\ServiceInterface" method="preparePostMethod"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/zeppto/save">
+        <service class="Zeppto\Magento2\Api\ServiceInterface" method="savePostMethod"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/zeppto/cancel">
+        <service class="Zeppto\Magento2\Api\ServiceInterface" method="cancelPostMethod"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/zeppto/check">
+        <service class="Zeppto\Magento2\Api\ServiceInterface" method="checkPostMethod"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
     <route method="POST" url="/V1/zeppto/cart">
         <service class="Zeppto\Magento2\Api\ServiceInterface" method="cartPostMethod"/>
         <resources>

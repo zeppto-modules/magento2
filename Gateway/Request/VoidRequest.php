@@ -15,8 +15,6 @@ use Zeppto\Magento2\Gateway\Http\Client\ZepptoMagento2Client;
 
 class VoidRequest implements BuilderInterface
 {
-    const FORCE_RESULT = 'FORCE_RESULT';
-
     /**
      * @var ConfigInterface
      */
@@ -56,7 +54,7 @@ class VoidRequest implements BuilderInterface
         }
 
         return [
-            self::FORCE_RESULT => ZepptoMagento2Client::SUCCESS,
+            ZepptoMagento2Client::RESULT_CODE => ZepptoMagento2Client::SUCCESS,
             'TXN_TYPE' => 'V',
             'TXN_ID' => $payment->getLastTransId(),
             'MERCHANT_KEY' => $this->config->getValue(

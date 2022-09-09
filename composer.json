@@ -2,7 +2,7 @@
     "name": "zeppto/magento2",
     "description": "Stop losing revenue to failed payments! Increase sales 5 to 10% by instantly retrying and approving your customers' failed payments via a backup payment processor.",
     "type": "magento2-module",
-    "version": "2.0.2",
+    "version": "2.1.0",
     "require": {
         "php": ">=7.1.3"
     },

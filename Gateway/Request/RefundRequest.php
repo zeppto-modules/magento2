@@ -15,7 +15,6 @@ use Zeppto\Magento2\Gateway\Http\Client\ZepptoMagento2Client;
 
 class RefundRequest implements BuilderInterface
 {
-    const FORCE_RESULT = 'FORCE_RESULT';
 
     /**
      * @var ConfigInterface
@@ -79,11 +78,13 @@ class RefundRequest implements BuilderInterface
         $status = $json['status'];
         if($status != 'ok') {
             return [
-                self::FORCE_RESULT =>  ZepptoMagento2Client::FAILURE
+              ZepptoMagento2Client::RESULT_CODE => ZepptoMagento2Client::FAILURE,
+              ZepptoMagento2Client::TRANSACTION_ID => 'refund_FAILED_'.$json['data']
             ];
         }else{
             return [
-                self::FORCE_RESULT => ZepptoMagento2Client::SUCCESS
+              ZepptoMagento2Client::RESULT_CODE => ZepptoMagento2Client::SUCCESS,
+              ZepptoMagento2Client::TRANSACTION_ID => 'refund_'.$json['data']
             ];
         }
     }

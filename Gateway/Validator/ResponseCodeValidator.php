@@ -13,7 +13,6 @@ use Zeppto\Magento2\Gateway\Http\Client\ZepptoMagento2Client;
 
 class ResponseCodeValidator extends AbstractValidator
 {
-    const RESULT_CODE = 'RESULT_CODE';
 
     /**
      * Performs validation of result code
@@ -48,7 +47,7 @@ class ResponseCodeValidator extends AbstractValidator
      */
     private function isSuccessfulTransaction(array $response)
     {
-        return isset($response[self::RESULT_CODE])
-        && $response[self::RESULT_CODE] !== ZepptoMagento2Client::FAILURE;
+        return isset($response[ZepptoMagento2Client::RESULT_CODE])
+        && $response[ZepptoMagento2Client::RESULT_CODE] !== ZepptoMagento2Client::FAILURE;
     }
 }

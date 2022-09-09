@@ -35,7 +35,7 @@ class MockDataRequest implements BuilderInterface
 
         $transactionResult = $payment->getAdditionalInformation('transaction_result');
         return [
-            self::FORCE_RESULT => $transactionResult === null
+          ZepptoMagento2Client::RESULT_CODE => $transactionResult === null
                 ? ZepptoMagento2Client::SUCCESS
                 : $transactionResult
         ];

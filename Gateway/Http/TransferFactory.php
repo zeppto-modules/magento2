@@ -41,7 +41,7 @@ class TransferFactory implements TransferFactoryInterface
             ->setMethod('POST')
             ->setHeaders(
                 [
-                    'force_result' => isset($request[MockDataRequest::FORCE_RESULT])
+                  MockDataRequest::FORCE_RESULT => isset($request[MockDataRequest::FORCE_RESULT])
                         ? $request[MockDataRequest::FORCE_RESULT]
                         : null
                 ]

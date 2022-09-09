@@ -15,7 +15,6 @@ use Zeppto\Magento2\Gateway\Http\Client\ZepptoMagento2Client;
 
 class CaptureRequest implements BuilderInterface
 {
-    const FORCE_RESULT = 'FORCE_RESULT';
 
     /**
      * @var ConfigInterface
@@ -53,17 +52,24 @@ class CaptureRequest implements BuilderInterface
         $payment = $paymentDO->getPayment();
 
         if (!$payment instanceof OrderPaymentInterface) {
-            throw new \LogicException('Order payment should be provided.');
+          throw new \LogicException('Order payment should be provided.');
         }
 
-        return [
-            self::FORCE_RESULT => ZepptoMagento2Client::SUCCESS,
-            'TXN_TYPE' => 'S',
-            'TXN_ID' => $payment->getLastTransId(),
-            'MERCHANT_KEY' => $this->config->getValue(
-                'merchant_gateway_key',
-                $order->getStoreId()
-            )
-        ];
+        $transactionId = $payment->getAdditionalInformation('paymentIntentId');
+        if(!$transactionId) {
+          return [
+            ZepptoMagento2Client::RESULT_CODE => ZepptoMagento2Client::FAILURE
+          ];
+        } else {
+          return [
+              ZepptoMagento2Client::RESULT_CODE => ZepptoMagento2Client::SUCCESS,
+              'TXN_TYPE' => 'S',
+              ZepptoMagento2Client::TRANSACTION_ID => $transactionId,
+              'MERCHANT_KEY' => $this->config->getValue(
+                  'merchant_gateway_key',
+                  $order->getStoreId()
+              )
+          ];
+        }
     }
 }

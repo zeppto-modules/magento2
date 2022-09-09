@@ -14,7 +14,6 @@ use Zeppto\Magento2\Gateway\Http\Client\ZepptoMagento2Client;
 
 class AuthorizationRequest implements BuilderInterface
 {
-    const FORCE_RESULT = 'FORCE_RESULT';
 
     /**
      * @var ConfigInterface
@@ -50,7 +49,7 @@ class AuthorizationRequest implements BuilderInterface
         $address = $order->getShippingAddress();
 
         return [
-            self::FORCE_RESULT => ZepptoMagento2Client::SUCCESS,
+            ZepptoMagento2Client::RESULT_CODE => ZepptoMagento2Client::SUCCESS,
             'TXN_TYPE' => 'A',
             'INVOICE' => $order->getOrderIncrementId(),
             'AMOUNT' => $order->getGrandTotalAmount(),
