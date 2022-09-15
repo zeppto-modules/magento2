@@ -459,15 +459,11 @@ class Service implements ServiceInterface
       public function savePostMethod($paymentIntentId)
       {
         $order = $this->checkoutSession->getLastRealOrder();
-        echo $order->getIncrementId();
         $payment = $order->getPayment();
-        echo $payment->getMethod();
-        
         try {
           $quoteTotal = $order->getGrandTotal();
           $quoteCurrency = $order->getOrderCurrencyCode();
-          echo $quoteTotal.$quoteCurrency;
-          /*$data = array(
+          $data = array(
             'intent_id' => $paymentIntentId,
             'amount' => $quoteTotal * 100,
             'currency' => $quoteCurrency,
@@ -498,7 +494,7 @@ class Service implements ServiceInterface
               'url' => $redirectUrl,
               'reason' => "paymentrefused"
             ));
-          }*/
+          }
           $payment->setTransactionId($paymentIntentId); // Doesn't work
           // For later refunds
           $payment->setAdditionalInformation(
@@ -513,7 +509,7 @@ class Service implements ServiceInterface
           $payment->setMethod('zeppto_magento2');
           $payment->save();
           
-          $order->setStatus(Order::STATE_PROCESSING);
+          $order->setStatus(Order::STATE_PROCESSING); // Be aware: will STOP 117 processing with Hipay
           $order->setState(Order::STATE_PROCESSING);
           
           $order->save();
