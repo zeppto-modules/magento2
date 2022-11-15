@@ -370,6 +370,7 @@ class Service implements ServiceInterface
           }
           $response = [
             'cartID' => $quote->getId(),
+            'moduleVersion' => '2.1.1',
           ];
           
         }catch(\Exception $e) {
