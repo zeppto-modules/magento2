@@ -392,6 +392,7 @@ class Service implements ServiceInterface
       {
         $order = $this->checkoutSession->getLastRealOrder();
         $order->setActionFlag(Order::ACTION_FLAG_CANCEL, false);
+        $order->save();
         $quote = $this->cart->getQuote();
         $quote->reserveOrderId()->save();
         $data = array(
@@ -418,7 +419,6 @@ class Service implements ServiceInterface
         if(isset($json['status'])){
           $status = $json['status'];
         }
-        $order->save();
         return json_encode([
           'status' => 'success',
           'orderId' => $order->getId(),
