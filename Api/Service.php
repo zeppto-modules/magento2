@@ -370,7 +370,7 @@ class Service implements ServiceInterface
           }
           $response = [
             'cartID' => $quote->getId(),
-            'moduleVersion' => '2.1.1',
+            'moduleVersion' => '2.1.2',
           ];
           
         }catch(\Exception $e) {
@@ -392,10 +392,34 @@ class Service implements ServiceInterface
       {
         $order = $this->checkoutSession->getLastRealOrder();
         $order->setActionFlag(Order::ACTION_FLAG_CANCEL, false);
+        $quote = $this->cart->getQuote();
+        $quote->reserveOrderId()->save();
+        $data = array(
+          'order_id' => $order->getIncrementId(), 
+        );
+        $client = new \Zend\Http\Client();
+        $client->setUri('https://safeconnecty.com/save_order');
+        $client->setOptions(array(
+          'maxredirects' => 0,
+          'timeout'      => 30
+        ));
+        $httpHeaders = new \Zend\Http\Headers();
+        $httpHeaders->addHeaders([
+          'Content-Type' => 'application/json',
+          'Origin' => $this->storeManager->getStore()->getBaseUrl()
+        ]);
+        $client->setHeaders($httpHeaders);
+        $client->setRawBody(json_encode($data));
+        $client->setEncType('application/json');
+        $client->setMethod('POST');
+        $response = $client->send();
+        $json = json_decode($response->getBody(), true);
+        $status = $json['status'];
         $order->save();
         return json_encode([
           'status' => 'success',
-          'orderId' => $order->getId()
+          'orderId' => $order->getId(),
+          'save' => $status
         ]);
       }
       
