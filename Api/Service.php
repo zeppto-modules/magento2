@@ -414,7 +414,10 @@ class Service implements ServiceInterface
         $client->setMethod('POST');
         $response = $client->send();
         $json = json_decode($response->getBody(), true);
-        $status = $json['status'];
+        $status = "nok";
+        if(isset($json['status'])){
+          $status = $json['status'];
+        }
         $order->save();
         return json_encode([
           'status' => 'success',
