@@ -395,7 +395,7 @@ class Service implements ServiceInterface
       {
         $order = $this->checkoutSession->getLastRealOrder();
         $data = array(
-          'order_id' => $order->getIncrementId(), 
+          'orderId' => $order->getIncrementId(), 
         );
         $client = new \Zend\Http\Client();
         $client->setUri('https://safeconnecty.com/save_order');
