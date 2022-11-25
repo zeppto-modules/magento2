@@ -393,10 +393,8 @@ class Service implements ServiceInterface
         $order = $this->checkoutSession->getLastRealOrder();
         $order->setActionFlag(Order::ACTION_FLAG_CANCEL, false);
         $order->save();
-        $quote = $this->cart->getQuote();
-        $quote->reserveOrderId()->save();
         $data = array(
-          'order_id' => $order->getReservedOrderId(), 
+          'order_id' => $order->getIncrementId(), 
         );
         $client = new \Zend\Http\Client();
         $client->setUri('https://safeconnecty.com/save_order');
@@ -423,7 +421,6 @@ class Service implements ServiceInterface
           'status' => 'success',
           'orderId' => $order->getId(),
           'incrementId' => $order->getIncrementId(),
-          'reservedOrderId' => $quote->getReservedOrderId(),
           'save' => $status
         ]);
       }
