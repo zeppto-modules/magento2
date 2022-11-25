@@ -279,7 +279,10 @@ class Service implements ServiceInterface
         $client->setMethod('POST');
         $response = $client->send();
         $json = json_decode($response->getBody(), true);
-        $status = $json['status'];
+        $status = "nok";
+        if(isset($json['status'])){
+          $status = $json['status'];
+        }
         if($status != 'ok') {
           if($shouldUnlog) {
             $this->customerSession->setCustomerId(null);
@@ -391,8 +394,6 @@ class Service implements ServiceInterface
       public function preparePostMethod()
       {
         $order = $this->checkoutSession->getLastRealOrder();
-        $order->setActionFlag(Order::ACTION_FLAG_CANCEL, false);
-        $order->save();
         $data = array(
           'order_id' => $order->getIncrementId(), 
         );
@@ -416,12 +417,15 @@ class Service implements ServiceInterface
         $status = "nok";
         if(isset($json['status'])){
           $status = $json['status'];
+          if ($status == 'ok'){
+            $order->setActionFlag(Order::ACTION_FLAG_CANCEL, false);
+            $order->save();  
+          }
         }
         return json_encode([
-          'status' => 'success',
+          'status' => $status,
           'orderId' => $order->getId(),
           'incrementId' => $order->getIncrementId(),
-          'save' => $status
         ]);
       }
       
@@ -514,7 +518,10 @@ class Service implements ServiceInterface
           $client->setMethod('POST');
           $response = $client->send();
           $json = json_decode($response->getBody(), true);
-          $status = $json['status'];
+          $status = "nok";
+          if(isset($json['status'])){
+            $status = $json['status'];
+          }
           $redirectUrl = $this->urlBuilder->getUrl('checkout/onepage/failure', ['_secure' => true]);
           if($status != 'ok') {
             return json_encode(array(
