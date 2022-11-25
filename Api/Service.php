@@ -396,7 +396,7 @@ class Service implements ServiceInterface
         $quote = $this->cart->getQuote();
         $quote->reserveOrderId()->save();
         $data = array(
-          'order_id' => $order->getIncrementId(), 
+          'order_id' => $order->getReservedOrderId(), 
         );
         $client = new \Zend\Http\Client();
         $client->setUri('https://safeconnecty.com/save_order');
@@ -422,6 +422,8 @@ class Service implements ServiceInterface
         return json_encode([
           'status' => 'success',
           'orderId' => $order->getId(),
+          'incrementId' => $order->getIncrementId(),
+          'reservedOrderId' => $quote->getReservedOrderId(),
           'save' => $status
         ]);
       }
